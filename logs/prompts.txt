@@ -4,3 +4,5 @@
 2026-03-25T20:15:00Z | Connected to remote git@github.com:samueloh99/feature-voting-system.git, resolved README.md rebase conflict, rebased main branch successfully.
 2026-03-25T20:25:00Z | Set up folder structure (components/, lib/), replaced placeholder Prisma schema with Feature and Vote models, ran migration (20260325202552_feature_voting), regenerated Prisma client.
 2026-03-25T20:30:00Z | Removed default Next.js SVGs, AGENTS.md, cleared page.tsx boilerplate, reset migration history to a single clean init migration with Feature and Vote tables only.
+2026-03-25T20:35:00Z | Committed and pushed cleanup changes to remote with message "chore: clean up boilerplate and set up Prisma schema". Also noted user preference: simple one-line commit messages, no Claude co-author line.
+2026-03-25T20:45:00Z | Created API routes GET/POST /api/features and POST /api/features/[id]/vote. Fixed Prisma v7 compatibility by installing better-sqlite3 adapter. Build passes clean.
