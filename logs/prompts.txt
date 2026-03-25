@@ -1,3 +1,6 @@
 2026-03-25T00:00:00Z | Created CLAUDE.md in project root with prompt logging instructions.
 2026-03-25T20:05:00Z | Initialized Next.js (TypeScript) project, installed Prisma with SQLite, created schema with User and Post models, ran initial migration (20260325200536_init), generated Prisma client, and created lib/prisma.ts singleton.
 2026-03-25T20:10:00Z | Moved prompts.txt to logs/prompts.txt and updated CLAUDE.md to reference the new path.
+2026-03-25T20:15:00Z | Connected to remote git@github.com:samueloh99/feature-voting-system.git, resolved README.md rebase conflict, rebased main branch successfully.
+2026-03-25T20:25:00Z | Set up folder structure (components/, lib/), replaced placeholder Prisma schema with Feature and Vote models, ran migration (20260325202552_feature_voting), regenerated Prisma client.
+2026-03-25T20:30:00Z | Removed default Next.js SVGs, AGENTS.md, cleared page.tsx boilerplate, reset migration history to a single clean init migration with Feature and Vote tables only.
