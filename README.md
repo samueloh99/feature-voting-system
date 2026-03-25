@@ -1,40 +1,76 @@
-<<<<<<< HEAD
-# feature-voting-system
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Feature Voting System
+
+A full-stack app where users can submit feature requests, upvote them, and see a live ranking by popularity.
+
+## Stack
+
+- **Next.js 16** — App Router, API routes
+- **TypeScript**
+- **Prisma 7** + **SQLite** — local database with migrations
+- **SWR** — data fetching with optimistic updates
+- **Tailwind CSS** — styling
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Set up the database
+
+```bash
+npx prisma migrate dev
+```
+
+### 3. (Optional) Seed with sample data
+
+```bash
+npm run seed
+```
+
+### 4. Start the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Submit feature requests (title + description)
+- Upvote / un-vote features
+- Live vote count with optimistic updates
+- Ranked list sorted by popularity
+- Persistent user identity via `localStorage` (no auth required)
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  api/
+    features/route.ts          # GET (list) + POST (create)
+    features/[id]/vote/route.ts # POST (toggle vote)
+  page.tsx                     # Main page
+components/
+  FeatureCard.tsx              # Single feature with vote button
+  FeatureList.tsx              # Sorted list with SWR
+  SubmitForm.tsx               # Collapsible submit form
+lib/
+  prisma.ts                    # Prisma client singleton
+  useUserId.ts                 # localStorage UUID hook
+  types.ts                     # Shared TypeScript types
+prisma/
+  schema.prisma                # Feature + Vote models
+  seed.ts                      # Sample data seed script
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> 0363f5c (Initial commit from Create Next App)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/features?userId=` | List features sorted by votes, with `userVoted` flag |
+| `POST` | `/api/features` | Create a feature `{ title, description }` |
+| `POST` | `/api/features/[id]/vote` | Toggle vote `{ userId }` |

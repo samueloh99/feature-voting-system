@@ -9,3 +9,5 @@
 2026-03-25T21:00:00Z | Installed SWR. Created lib/useUserId.ts hook (localStorage UUID persistence, SSR-safe). No TypeScript or build errors found.
 2026-03-25T21:05:00Z | Fixed useUserId.ts - replaced useEffect+setState pattern with lazy useState initializer to avoid cascading renders warning. SSR-safe via typeof window check.
 2026-03-25T21:15:00Z | Implemented all remaining UI pieces: updated GET /api/features to return userVoted, created lib/types.ts, FeatureCard, FeatureList (SWR + optimistic updates), SubmitForm, wired page.tsx, updated layout metadata. Build clean, committed and pushed.
+2026-03-25T21:30:00Z | Full UI redesign: gradient background, sticky glass header, hero section, collapsible submit form with success state, FeatureCard with rank badge + voted badge + timeAgo + animated vote button, skeleton loaders, empty state with emoji. Build clean, committed and pushed.
+2026-03-25T21:40:00Z | Created prisma/seed.ts and seeded DB with 5 features and votes (5,3,2,1,0). API confirmed returning correct sorted order. UI can be verified at http://localhost:3000.

@@ -33,8 +33,8 @@ export default function FeatureList() {
     if (!userId) return;
 
     mutate(
-      (prev) =>
-        prev?.map((f) =>
+      (prev) => {
+        const updated = prev?.map((f) =>
           f.id === id
             ? {
                 ...f,
@@ -42,7 +42,9 @@ export default function FeatureList() {
                 _count: { votes: f._count.votes + (f.userVoted ? -1 : 1) },
               }
             : f
-        ),
+        );
+        return updated?.slice().sort((a, b) => b._count.votes - a._count.votes);
+      },
       false
     );
 
