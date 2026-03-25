@@ -1,13 +1,24 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const userId = searchParams.get("userId") ?? "";
+
   const features = await prisma.feature.findMany({
     orderBy: { votes: { _count: "desc" } },
-    include: { _count: { select: { votes: true } } },
+    include: {
+      _count: { select: { votes: true } },
+      votes: userId ? { where: { userId } } : false,
+    },
   });
 
-  return NextResponse.json(features);
+  const result = features.map(({ votes, ...f }) => ({
+    ...f,
+    userVoted: userId ? votes.length > 0 : false,
+  }));
+
+  return NextResponse.json(result);
 }
 
 export async function POST(req: Request) {
