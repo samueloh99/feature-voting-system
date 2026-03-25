@@ -8,3 +8,4 @@
 2026-03-25T20:45:00Z | Created API routes GET/POST /api/features and POST /api/features/[id]/vote. Fixed Prisma v7 compatibility by installing better-sqlite3 adapter. Build passes clean.
 2026-03-25T21:00:00Z | Installed SWR. Created lib/useUserId.ts hook (localStorage UUID persistence, SSR-safe). No TypeScript or build errors found.
 2026-03-25T21:05:00Z | Fixed useUserId.ts - replaced useEffect+setState pattern with lazy useState initializer to avoid cascading renders warning. SSR-safe via typeof window check.
+2026-03-25T21:15:00Z | Implemented all remaining UI pieces: updated GET /api/features to return userVoted, created lib/types.ts, FeatureCard, FeatureList (SWR + optimistic updates), SubmitForm, wired page.tsx, updated layout metadata. Build clean, committed and pushed.
